@@ -27,8 +27,8 @@ function getPosts(json) {
         }
 
         thumbUrl = entry.media$thumbnail.url;
-        
-        
+
+
         try {
             if ("content" in entry) {
                 var postContent = entry.content.$t;
@@ -40,7 +40,7 @@ function getPosts(json) {
             postContent = postContent.replace(re, "");
         } //end try
         catch (error) {}
-        
+
         
         ul.appendChild(
             createPostItem(
@@ -243,12 +243,6 @@ function getPosts(json) {
         */
     } //close post loop
 
-    var gadgetDiv = tag("div",{},
-            tag("h1",{}, "Widget"),
-            ul
-    );
-
-    document.getElementById('recent').appendChild(gadgetDiv);
     document.getElementById('recent').appendChild(ul);
 }
 
