@@ -322,9 +322,10 @@ var script = document.createElement("script");
 	head.appendChild( script );
 
 
-
-
-
+var style = document.createElement("style");
+  style.innerHTML = viewParams["css"];
+  style.charSet = "utf-8";
+  head.appendChild(style);
 
 }
 
