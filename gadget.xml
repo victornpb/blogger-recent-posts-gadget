@@ -206,7 +206,7 @@ var readMore,numberOfPosts,showThumbs=false,showPostDate=false,showSummary=false
 var feedUrl="",font,linkColor,showNoImage=false,fontSize,titleLength,mediaThumbsOnly=false,imgDim,imgFloat,showBorder=false,borderColor,fontFace,imgCSS,poweredBy=true,underline=true;
 </script>
 
-<script type="text/javascript" src="http://bloggergadgets.googlecode.com/svn/trunk/recentpostsjs.js"></script>
+<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recentposts.js"></script>
 
 </head>
 <body>
