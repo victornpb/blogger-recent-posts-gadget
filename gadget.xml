@@ -236,6 +236,8 @@ var feedUrl = "",
 </head>
 <body>
 
+<h1>Test</h1>
+
 <span id="dummy" style="display:none;"></span>
 <div id="instr" style="display:none;border-bottom:1px solid black;">Hello Admin,If you need help configuring this gadget or if you like to provide your feedback about the gadget or just want to say hi, visit <a href="http://www.bloggerplugins.org/2009/07/recent-posts-widget-blogger-thumnail.html?utm_source=blogger&utm_medium=recent-posts-panel&utm_campaign=gadgets" target="_blank">my blog</a></div>
 
