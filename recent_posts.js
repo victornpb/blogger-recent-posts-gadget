@@ -51,7 +51,7 @@ function getPosts(json) {
                 postTitle,
                 postContent,
                 thumbUrl,
-                postUrl,
+                postUrl
             )
         );
 
