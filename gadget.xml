@@ -16,7 +16,7 @@
   <Require feature="google.blog"/>
   <Require feature="skins"/>
   <Require feature="views"/>
-  
+
 </ModulePrefs>
 
 
@@ -231,7 +231,7 @@ var feedUrl = "",
     underline = true;
 </script>
 
-<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recentposts.js"></script>
+<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/function.js"></script>
 
 </head>
 <body>
