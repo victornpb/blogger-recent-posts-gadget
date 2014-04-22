@@ -215,7 +215,69 @@ default_value="" />
 <html>
 <head>
 <title>Recent Posts with Thumbnails</title>
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
 
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #D6D6D6
+}
+
+.gadget_recentposts{
+    width: 240px;
+    border: 1px solid blue;
+}
+.gadget_recentposts ul{
+    margin: 0;
+    padding: 0;
+}
+.gadget_recentposts li{
+    margin: 0;
+    padding: 0;
+    
+    margin-bottom: 5px;
+}
+
+.recentpost{
+    height: 100px;
+}
+.recentpost .thumb{
+    display: inline-block;
+    float: left;
+}
+
+.recentpost .description{
+    
+    font-size: 9pt;
+    max-height: 100%;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.recentpost .description h1{
+    font-size: 12pt;
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 1em;     /* fallback */
+    max-height: 100%;      /* fallback */
+    
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+</style>
 <script type="text/javascript">
 var readMore, numberOfPosts, showThumbs = false,
     showPostDate = false,
