@@ -264,6 +264,10 @@ body{
     margin: 0;
     margin-bottom: 0.5em;
 }
+.gadget_recentposts h1 a{
+    text-decoration: none;
+    color: inherit;
+}
 
 .description{
     overflow: hidden;
