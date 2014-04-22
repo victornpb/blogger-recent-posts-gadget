@@ -5,9 +5,6 @@ function getPosts(json) {
 
     //console.log(json);
 
-
-    
-
     var ul = tag("ul");
 
     for (var i = 0; i < Math.min(numberOfPosts, json.feed.entry.length); i++) {
@@ -30,8 +27,8 @@ function getPosts(json) {
         }
 
         thumbUrl = entry.media$thumbnail.url;
-
-
+        
+        
         try {
             if ("content" in entry) {
                 var postContent = entry.content.$t;
@@ -43,8 +40,7 @@ function getPosts(json) {
             postContent = postContent.replace(re, "");
         } //end try
         catch (error) {}
-
-
+        
         
         ul.appendChild(
             createPostItem(
