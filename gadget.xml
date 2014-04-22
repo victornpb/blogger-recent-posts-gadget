@@ -391,6 +391,18 @@ function initialize() {
 
     var head = document.getElementsByTagName("head")[0] || document.documentElement;
 
+    //append custom css Styles to gadget
+    var customStyle = document.createElement("style");
+    customStyle.type = "text/css";
+    customStyle.innerHTML = viewParams["css"];
+    head.appendChild(customStyle);
+
+    //add custom script to gadget
+    var customScript = document.createElement("script");
+    customScript.type = "text/javascript";
+    customScript.innerHTML = viewParams["js"];
+    head.appendChild(customScript);
+
     var script = document.createElement("script");
     script.src = onePostFeed + "&alt=json-in-script&callback=getPosts";
     script.charSet = "utf-8";

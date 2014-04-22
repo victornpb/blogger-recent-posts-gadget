@@ -1,10 +1,19 @@
-//Recent Posts Script by bloggerplugins.org 
-var postTitleOriginal, myLink, myDiv, myImage, mySeparator;
+var postTitleOriginal, myLink, myDiv, myImage;
 var main;
-var float_clear = false;
-var flag = 0;
 
-function bprecentpostswiththumbnails(json) {
+function getPosts(json) {
+    if (poweredBy) {
+        myDiv = createDiv("bp_poweredBy");
+        myDiv.style.clear = "both";
+        myDiv.innerHTML = "Powered By : ";
+        myDiv.style.marginTop = "4px";
+        var myLink = createLink("http://www.bloggerplugins.org/2009/07/recent-posts-widget-blogger-thumnail.html?utm_source=blogger&utm_medium=recent-posts&utm_campaign=gadgets", "_blank", "Recent Posts Gadget For Blogger")
+        document.getElementById('poweredBy').style.display = "block";
+        myDiv.appendChild(myLink);
+        document.getElementById('poweredBy').appendChild(myDiv);
+        myLink.innerHTML = "Blogger Plugins";
+    }
+
 
     for (var i = 0; i < numberOfPosts; i++) {
         if (i == json.feed.entry.length) break;
@@ -16,7 +25,7 @@ function bprecentpostswiththumbnails(json) {
             postTitle = '';
 
         } else if (postTitle.length > titleLength) postTitle = postTitle.substring(0, titleLength) + "...";
-        var postUrl = "";
+        var postUrl;
         for (var k = 0; k < entry.link.length; k++) {
             if (entry.link[k].rel == 'replies' && entry.link[k].type == 'text/html') {
                 var commentText = entry.link[k].title;
@@ -31,7 +40,7 @@ function bprecentpostswiththumbnails(json) {
             var thumbUrl = "";
             try {
                 thumbUrl = entry.media$thumbnail.url;
-                thumbUrl = thumbUrl.replace("/s72-c/", "/s" + imgDim + "-c/");
+                if (imgDim == "80" || imgDim == "85" || imgDim == "90" || imgDim == "95" || imgDim == "100") thumbUrl = thumbUrl.replace("/s72-c/", "/s104-c/");
             } catch (error) {
                 if ("content" in entry) s = entry.content.$t;
                 else s = "";
@@ -60,14 +69,8 @@ function bprecentpostswiththumbnails(json) {
                 thumbUrl = thumbUrl.replace("_b.jpg", "_s.jpg");
                 thumbUrl = thumbUrl.replace("_m.jpg", "_s.jpg");
             }
-            if (thumbUrl == "" && showNoImage == true) {
-                thumbUrl = "http://2.bp.blogspot.com/-erTXCq61ULM/TmHYAQBZ0GI/AAAAAAAACCs/6cBX54Dn6Gs/s72-c/default.png";
-                try {
-                    if (defaultImage != "") thumbUrl = defaultImage;
-                } catch (error) {}
-                thumbUrl = thumbUrl.replace("/s72-c/", "/s" + imgDim + "-c/");
-            }
-        }
+            if (thumbUrl == "" && showNoImage == true) thumbUrl = 'http://1.bp.blogspot.com/_u4gySN2ZgqE/SosvnavWq0I/AAAAAAAAArk/yL95WlyTqr0/s400/noimage.png';
+        } //end ifposthumbs
         if (showPostDate == true) {
             var postdate = entry.published.$t;
             var cdyear = postdate.substring(0, 4);
@@ -86,15 +89,18 @@ function bprecentpostswiththumbnails(json) {
             monthnames[10] = "Oct";
             monthnames[11] = "Nov";
             monthnames[12] = "Dec";
-        }
+        } //end if date
         code = "";
-        main = document.getElementById('bp_recent');
+        main = document.getElementById('recent');
         myDiv = document.createElement('div');
         myDiv.setAttribute("class", "bp_item_title");
         myLink = createLink(postUrl, "_top", postTitleOriginal)
-        if (main.innerHTML != "") {
-            mySeparator = createDiv("bp_recent_separator");
-            main.appendChild(mySeparator)
+        if (showBorder) {
+            if (main.innerHTML != "") {
+                myDiv.style.paddingTop = "4px";
+                myDiv.style.borderTop = "1px dotted black";
+                myDiv.style.borderTopColor = borderColor;
+            }
         }
         if (postTitle != '') {
             myDiv.appendChild(myLink);
@@ -107,20 +113,17 @@ function bprecentpostswiththumbnails(json) {
 
         if (showThumbs == true && thumbUrl != "") {
             myImage = document.createElement('img');
+            myImage.style.border = "none";
+            myImage.style.margin = "5px";
             myImage.setAttribute("src", thumbUrl);
-            if (imgFloat != "none") {
-                float_clear = true;
-                myImage.style.cssFloat = imgFloat;
-                myImage.style.styleFloat = imgFloat;
-            }
-            try {
-                if (myMargin != 0) myImage.style.margin = myMargin + "px";
-            } catch (error) {}
+            myImage.style.cssFloat = imgFloat;
+            myImage.style.styleFloat = imgFloat;
             myImage.setAttribute("alt", postTitleOriginal);
             myImage.setAttribute("width", imgDim);
+            //myImage.setAttribute("align", imgFloat);
             myImage.setAttribute("height", imgDim);
             myLink = document.createElement('a');
-            myLink.setAttribute("href", postUrl + "?utm_source=bp_recent&utm-medium=gadget&utm_campaign=bp_recent");
+            myLink.setAttribute("href", postUrl + "?utm_source=BP_recent");
             myLink.setAttribute("target", "_top");
             myLink.setAttribute("title", postTitleOriginal);
             myLink.appendChild(myImage);
@@ -130,6 +133,9 @@ function bprecentpostswiththumbnails(json) {
             myDiv.appendChild(myLink);
             main.appendChild(myDiv);
         }
+
+
+
 
         try {
             if ("content" in entry) {
@@ -160,8 +166,9 @@ function bprecentpostswiththumbnails(json) {
         myDiv = createDiv("bp_item_meta");
         myDiv.style.clear = "both";
         myDiv.style.marginBottom = "4px";
+        myDiv.style.fontSize = "13px";
 
-
+        var flag = 0;
         if (showPostDate == true) {
             myDiv.appendChild(document.createTextNode(monthnames[parseInt(cdmonth, 10)] + '-' + cdday + '-' + cdyear));
             flag = 1;
@@ -191,26 +198,23 @@ function bprecentpostswiththumbnails(json) {
 
 
 
-        if (flag == 1) main.appendChild(myDiv);
-
-    }
-
-    if (float_clear == true && imgFloat != "none") {
-        myDiv = createDiv("bp_clear_float");
-        myDiv.style.clear = imgFloat;
-        main.appendChild(myDiv);
-    }
-    document.getElementById("bp_recent_link").style.backgroundImage = "url('http://3.bp.blogspot.com/-H8WPIh3wjr4/TmHnuo9tnnI/AAAAAAAACDE/_yuVqfb1HAk/blogger-widgets.png')";
-    document.getElementById("bp_recent_link").style.backgroundRepeat = "no-repeat";
-    try {
-        if (myMargin != 0 && imgFloat == "left" && flag == 0) document.getElementById("bp_recent_link").style.marginLeft = myMargin + "px";
-    } catch (error) {}
+        if (flag == 1 || showSummary || postTitle != "") main.appendChild(myDiv);
+        gadgets.window.adjustHeight();
+    } //close post loop
 }
 
 
 function createDiv(className) {
     var myDiv = document.createElement('div');
     myDiv.setAttribute("class", className);
+    if (fontFace == "") {
+        if (typeof (font) != 'undefined') {
+            if (font.charAt(font.length - 1) == ";") font = font.substr(0, font.length - 1);
+            if (font.indexOf(" ") != -1 || font.indexOf(",") != -1) myDiv.style.font = font;
+            else myDiv.style.fontFamily = font;
+        }
+    } else myDiv.style.fontFamily = fontFace;
+    if (fontSize != "") myDiv.style.fontSize = fontSize;
     return myDiv;
 }
 
@@ -219,11 +223,21 @@ function createLink(href, target, title) {
 
     var myLink = document.createElement('a');
     if (href.substring(href.length - 13, href.length) == "#comment-form") {
-        href = href.substring(0, href.length - 13) + "?utm_source=bp_recent&utm-medium=gadget&utm_campaign=bp_recent" + "#comment-form";
+        href = href.substring(0, href.length - 13) + "?utm_source=BP_recent" + "#comment-form";
         myLink.setAttribute("href", href);
-    } else myLink.setAttribute("href", href + "?utm_source=BP_recent&utm-medium=gadget&utm_campaign=bp_recent");
+    } else myLink.setAttribute("href", href + "?utm_source=BP_recent");
     myLink.setAttribute("target", target);
     myLink.setAttribute("title", title);
+    if (!underline) myLink.style.textDecoration = "none";
+    if (fontFace == "") {
+        if (typeof (font) != 'undefined') {
+            if (font.charAt(font.length - 1) == ";") font = font.substr(0, font.length - 1);
+            if (font.indexOf(" ") != -1 || font.indexOf(",") != -1) myLink.style.font = font;
+            else myLink.style.fontFamily = font;
+        }
+    } else myLink.style.fontFamily = fontFace;
+    if (fontSize != "") myLink.style.fontSize = fontSize;
+    myLink.style.color = linkColor;
     return myLink;
 }
 
