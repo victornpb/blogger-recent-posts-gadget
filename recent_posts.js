@@ -2,6 +2,9 @@ var postTitleOriginal, myLink, myDiv, myImage;
 var main;
 
 function getPosts(json) {
+
+    console.log(json);
+
     if (poweredBy) {
         myDiv = createDiv("bp_poweredBy");
         myDiv.style.clear = "both";
@@ -14,8 +17,14 @@ function getPosts(json) {
         myLink.innerHTML = "Blogger Plugins";
     }
 
+    main = document.getElementById('recent');
+
+    var ul = document.createElement('ul');
 
     for (var i = 0; i < numberOfPosts; i++) {
+
+        var li = document.createElement('li');
+
         if (i == json.feed.entry.length) break;
         var s;
         var entry = json.feed.entry[i];
@@ -90,13 +99,18 @@ function getPosts(json) {
             monthnames[11] = "Nov";
             monthnames[12] = "Dec";
         } //end if date
+
         code = "";
-        main = document.getElementById('recent');
+
+        
+
+        var item = document.createElement('div');
+
         myDiv = document.createElement('div');
         myDiv.setAttribute("class", "bp_item_title");
         myLink = createLink(postUrl, "_top", postTitleOriginal);
         if (showBorder) {
-            if (main.innerHTML != "") {
+            if (li.innerHTML != "") {
                 myDiv.style.paddingTop = "4px";
                 myDiv.style.borderTop = "1px dotted black";
                 myDiv.style.borderTopColor = borderColor;
@@ -105,7 +119,7 @@ function getPosts(json) {
         if (postTitle != '') {
             myDiv.appendChild(myLink);
         }
-        main.appendChild(myDiv);
+        li.appendChild(myDiv);
         if (postTitle != '') myLink.innerHTML = postTitle;
 
 
@@ -131,7 +145,7 @@ function getPosts(json) {
             myDiv = document.createElement('div');
             myDiv.setAttribute("class", "bp_item_thumb");
             myDiv.appendChild(myLink);
-            main.appendChild(myDiv);
+            li.appendChild(myDiv);
         }
 
 
@@ -158,7 +172,7 @@ function getPosts(json) {
                     myDiv.appendChild(document.createTextNode(postContent + '...'));
                 }
 
-                main.appendChild(myDiv);
+                li.appendChild(myDiv);
             }
         } //end try
         catch (error) {}
@@ -196,9 +210,11 @@ function getPosts(json) {
             flag = 1;;
         }
 
-        if (flag == 1 || showSummary || postTitle != "") main.appendChild(myDiv);
+        if (flag == 1 || showSummary || postTitle != "") li.appendChild(myDiv);
         gadgets.window.adjustHeight();
     } //close post loop
+
+    main.appendChild(ul);
 }
 
 
