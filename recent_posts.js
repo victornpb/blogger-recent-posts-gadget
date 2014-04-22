@@ -3,37 +3,20 @@ var main;
 
 function getPosts(json) {
 
-    console.log(json);
+    //console.log(json);
 
-    if (poweredBy) {
-        myDiv = createDiv("bp_poweredBy");
-        myDiv.style.clear = "both";
-        myDiv.innerHTML = "Powered By : ";
-        myDiv.style.marginTop = "4px";
-        var myLink = createLink("http://www.bloggerplugins.org/2009/07/recent-posts-widget-blogger-thumnail.html?utm_source=blogger&utm_medium=recent-posts&utm_campaign=gadgets", "_blank", "Recent Posts Gadget For Blogger")
-        document.getElementById('poweredBy').style.display = "block";
-        myDiv.appendChild(myLink);
-        document.getElementById('poweredBy').appendChild(myDiv);
-        myLink.innerHTML = "Blogger Plugins";
-    }
 
-    main = document.getElementById('recent');
+    
 
-    var ul = document.createElement('ul');
+    var ul = tag("ul");
 
-    for (var i = 0; i < numberOfPosts; i++) {
+    for (var i = 0; i < Math.min(numberOfPosts, json.feed.entry.length); i++) {
 
-        var li = document.createElement('li');
-
-        if (i == json.feed.entry.length) break;
-        var s;
         var entry = json.feed.entry[i];
-        var postTitle = entry.title.$t;
-        postTitleOriginal = postTitle;
-        if (isNaN(titleLength) || titleLength == 0) {
-            postTitle = '';
 
-        } else if (postTitle.length > titleLength) postTitle = postTitle.substring(0, titleLength) + "...";
+        var postTitle = entry.title.$t;
+
+
         var postUrl;
         for (var k = 0; k < entry.link.length; k++) {
             if (entry.link[k].rel == 'replies' && entry.link[k].type == 'text/html') {
@@ -45,6 +28,51 @@ function getPosts(json) {
                 break;
             }
         }
+
+        thumbUrl = entry.media$thumbnail.url;
+
+
+        try {
+            if ("content" in entry) {
+                var postContent = entry.content.$t;
+            } else if ("summary" in entry) {
+                var postContent = entry.summary.$t;
+            } else var postContent = "";
+            var re = /<\S[^>]*>/g;
+            postContent = postContent.replace(re, "");
+            }
+        } //end try
+        catch (error) {}
+
+
+        
+        ul.appendChild(
+            createPostItem(
+                postTitle,
+                postContent,
+                thumbUrl,
+                postUrl,
+            )
+        );
+
+        /*
+        var li = document.createElement('li');
+
+        if (i == json.feed.entry.length) break;
+        var s;
+        var entry = json.feed.entry[i];
+
+        var postTitle = entry.title.$t;
+        postTitleOriginal = postTitle;
+        if (isNaN(titleLength) || titleLength == 0) {
+            postTitle = '';
+
+        } else if (postTitle.length > titleLength) postTitle = postTitle.substring(0, titleLength) + "...";
+        
+
+
+
+
         if (showThumbs == true) {
             var thumbUrl = "";
             try {
@@ -80,6 +108,9 @@ function getPosts(json) {
             }
             if (thumbUrl == "" && showNoImage == true) thumbUrl = 'http://1.bp.blogspot.com/_u4gySN2ZgqE/SosvnavWq0I/AAAAAAAAArk/yL95WlyTqr0/s400/noimage.png';
         } //end ifposthumbs
+
+
+
         if (showPostDate == true) {
             var postdate = entry.published.$t;
             var cdyear = postdate.substring(0, 4);
@@ -212,12 +243,19 @@ function getPosts(json) {
 
         if (flag == 1 || showSummary || postTitle != "") li.appendChild(myDiv);
         gadgets.window.adjustHeight();
+
+        */
     } //close post loop
 
-    main.appendChild(ul);
+    var gadgetDiv = tag("div",{},
+            tag("h1",{}, "Widget"),
+            ul
+    );
+
+    document.getElementById('recent').appendChild(gadgetDiv);
 }
 
-
+/*
 function createDiv(className) {
     var myDiv = document.createElement('div');
     myDiv.setAttribute("class", className);
@@ -252,5 +290,61 @@ function createLink(href, target, title) {
     if (fontSize != "") myLink.style.fontSize = fontSize;
     myLink.style.color = linkColor;
     return myLink;
+}
+
+*/
+
+function createPostItem(title, summary, thumb, link) {
+    var li = tag("li", {className: "recentpost"}, [
+            tag("div", {className: "thumb"},
+                tag("a", {href: link},
+                    tag("img", {src: thumb})
+                )
+            ),
+            tag("div",{className: "description"},
+                tag("h1", {},
+                    tag("a", {href: link}, title)
+                ),
+                document.createTextNode(summary)
+            )
+        ]);
+    return li;
+}
+
+
+//create element
+function tag(tag, attributes, childs){
+    function isArray(object) {
+        return Object.prototype.toString.call(object) === "[object Array]";
+    }
+    function isElement(object) {
+        return !!(object && object.nodeType == 1);
+    }
+    function isTextNode(node) {
+        return node.nodeType == 3;
+    }
+    var element=document.createElement(tag);
+    if(typeof attributes==='object' && attributes!=null){
+        for(var attName in attributes){
+            var attValue=attributes[attName];
+            if(attName.toLowerCase()=='style'){ element.style.cssText=attValue; }
+            else if(attName.toLowerCase()=='class' || attName.toLowerCase()=='classname'){ element.className=attValue; }
+            else{ element[attName] = attValue; }
+        }
+    }
+    
+    for(var i=2; i<arguments.length; i++)
+        if(isElement(arguments[i]) || isTextNode(arguments[i]))
+            element.appendChild(arguments[i]);
+    
+    if(isArray(childs))
+        for(var i=0; i<childs.length; i++)
+            if(isElement(childs[i]) || isTextNode(childs[i]))
+                element.appendChild(childs[i]);
+    
+    if(typeof childs=="string")
+        element.innerHTML = childs;
+    
+    return element;
 }
 
