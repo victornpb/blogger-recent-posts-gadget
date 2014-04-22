@@ -231,7 +231,7 @@ var feedUrl = "",
     underline = true;
 </script>
 
-<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recentposts.js"></script>
+<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recent_posts.js"></script>
 
 </head>
 <body>
