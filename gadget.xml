@@ -10,6 +10,7 @@
   screenshot="http://3.bp.blogspot.com/_u4gySN2ZgqE/SmWX-L7r-zI/AAAAAAAAAhk/lh4aZe-l-og/s800/recentpostsscreenshot.png"
   author_location="India"
   height="200">
+  height="600">
 
   <Require feature="dynamic-height"/>
   <Require feature="opensocial-0.7"/>
