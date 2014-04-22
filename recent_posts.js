@@ -38,9 +38,9 @@ function getPosts(json) {
             } else if ("summary" in entry) {
                 var postContent = entry.summary.$t;
             } else var postContent = "";
+
             var re = /<\S[^>]*>/g;
             postContent = postContent.replace(re, "");
-            }
         } //end try
         catch (error) {}
 
