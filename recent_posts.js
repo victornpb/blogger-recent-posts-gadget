@@ -94,7 +94,7 @@ function getPosts(json) {
         main = document.getElementById('recent');
         myDiv = document.createElement('div');
         myDiv.setAttribute("class", "bp_item_title");
-        myLink = createLink(postUrl, "_top", postTitleOriginal)
+        myLink = createLink(postUrl, "_top", postTitleOriginal);
         if (showBorder) {
             if (main.innerHTML != "") {
                 myDiv.style.paddingTop = "4px";
@@ -196,8 +196,6 @@ function getPosts(json) {
             flag = 1;;
         }
 
-
-
         if (flag == 1 || showSummary || postTitle != "") main.appendChild(myDiv);
         gadgets.window.adjustHeight();
     } //close post loop
@@ -220,7 +218,6 @@ function createDiv(className) {
 
 
 function createLink(href, target, title) {
-
     var myLink = document.createElement('a');
     if (href.substring(href.length - 13, href.length) == "#comment-form") {
         href = href.substring(0, href.length - 13) + "?utm_source=BP_recent" + "#comment-form";
