@@ -222,13 +222,11 @@ default_value="" />
 }
 
 body{
-    font-family: Helvetica, Arial, sans-serif;
-    background-color: #D6D6D6
+    
 }
 
 .gadget_recentposts{
-    width: 240px;
-    border: 1px solid blue;
+    
 }
 .gadget_recentposts ul{
     margin: 0;
