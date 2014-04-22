@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-
 <ModulePrefs
 
   title="Recent Posts"
@@ -17,16 +16,18 @@
   <Require feature="google.blog"/>
   <Require feature="skins"/>
   <Require feature="views"/>
-
+  
 </ModulePrefs>
 
+
 <UserPref name="p"
-              display_name="Pull Posts from"
-              datatype="enum"
-              default_value="0">
-        <EnumValue value="0" display_value="My Blog"/>
-        <EnumValue value="1" display_value="The Blogger Blog Below"/>
+display_name="Pull Posts from"
+datatype="enum"
+default_value="0">
+    <EnumValue value="0" display_value="My Blog"/>
+    <EnumValue value="1" display_value="The Blogger Blog Below"/>
 </UserPref>
+
 
 <UserPref
 name="q"
@@ -34,17 +35,20 @@ display_name="External Blogger URL(Needed only if you opt to display posts form 
 required="true"
 default_value="" />
 
+
 <UserPref
 name="a"
 display_name="Number of Posts to Display"
 required="true"
 default_value="5" />
 
+
 <UserPref
 name="b"
 display_name="Maximum Length of the Post Title"
 required="true"
 default_value="60" />
+
 
 <UserPref
 name="c"
@@ -56,6 +60,7 @@ default_value="0">
     <EnumValue value="2" display_value="Summary and Thumbnail"/>
     <EnumValue value="3" display_value="Thumbnail Only"/>
 </UserPref>
+
 
 <UserPref
 name="d"
@@ -69,6 +74,7 @@ default_value="0">
     <EnumValue value="3" display_value="Any Thumb &amp; No Image Thumb"/>
 </UserPref>
 
+
 <UserPref 
 name="k"
 display_name="Thumbnail Dimensions"
@@ -78,7 +84,6 @@ default_value="0">
     <EnumValue value="1" display_value="55 x 55"/>
     <EnumValue value="2" display_value="60 x 60"/>
     <EnumValue value="3" display_value="65 x 65"/>
-
     <EnumValue value="4" display_value="70 x 70"/>
     <EnumValue value="5" display_value="75 x 75"/>
     <EnumValue value="6" display_value="80 x 80"/>
@@ -89,12 +94,11 @@ default_value="0">
 </UserPref>
 
  
- <UserPref
+<UserPref
 name="e"
 display_name="Summary Length"
 required="true"
 default_value="150" />
-
 
 
 <UserPref
@@ -109,17 +113,15 @@ default_value="0">
     <EnumValue value="4" display_value="07-09-2010 | More >>"/>
     <EnumValue value="5" display_value="07-09-2010"/>
     <EnumValue value="6" display_value="5 Comments"/>
-
     <EnumValue value="7" display_value=" More >>"/>
 </UserPref>
 
 
- <UserPref
+<UserPref
 name="o"
 display_name="Read More Text"
 required="true"
 default_value="" />
-
 
 
 <UserPref
@@ -130,7 +132,6 @@ default_value="0">
     <EnumValue value="0" display_value="Inherit from Blog"/>
     <EnumValue value="1" display_value="Arial"/>
     <EnumValue value="2" display_value="Courier"/>
-
     <EnumValue value="3" display_value="Georgia"/>
     <EnumValue value="4" display_value="Imapact"/>
     <EnumValue value="5" display_value="Times New Roman"/>
@@ -146,7 +147,6 @@ datatype="enum"
 default_value="0">
     <EnumValue value="0" display_value="Inherit from Blog"/>
     <EnumValue value="10" display_value="10px"/>
-
     <EnumValue value="11" display_value="11px"/>
     <EnumValue value="12" display_value="12px"/>
     <EnumValue value="13" display_value="13px"/>
@@ -156,7 +156,6 @@ default_value="0">
     <EnumValue value="17" display_value="17px"/>
     <EnumValue value="18" display_value="18px"/>
     <EnumValue value="19" display_value="19px"/>
-
     <EnumValue value="20" display_value="20px"/>
 </UserPref>
 
@@ -171,7 +170,7 @@ default_value="1">
     <EnumValue value="3" display_value="Float Right,Underline Links"/>
 </UserPref>
 
- <UserPref
+<UserPref
 name="j"
 display_name="Border Colour"
 required="true"
@@ -260,20 +259,29 @@ function initialize() {
     //Grab the User Preferences
     var viewParams = gadgets.views.getParams();
     numberOfPosts = parseInt(viewParams["a"]);
+
     if (isNaN(numberOfPosts)) numberOfPosts = 1;
+
     summaryLength = parseInt(viewParams["e"]);
     titleLength = parseInt(viewParams["b"]);
+
     if (viewParams["h"] == "0") fontSize = "";
     else fontSize = viewParams["h"] + 'px';
+
     poweredBy = (viewParams["l"] == "0" ? true : false);
-    if (viewParams["g"] == "0") fontFace = "";
-    else if (viewParams["g"] == "1") fontFace = "Arial";
-    else if (viewParams["g"] == "2") fontFace = "Courier";
-    else if (viewParams["g"] == "3") fontFace = "Georgia";
-    else if (viewParams["g"] == "4") fontFace = "Impact";
-    else if (viewParams["g"] == "5") fontFace = "Times New Roman";
-    else if (viewParams["g"] == "6") fontFace = "Trebuchet";
-    else if (viewParams["g"] == "7") fontFace = "Verdana";
+
+    
+    fontFace = {
+        "0":"",
+        "1":"Arial",
+        "2":"Courier",
+        "3":"Georgia",
+        "4":"Impact",
+        "5":"Times New Roman",
+        "6":"Trebuchet",
+        "7":"Verdana",
+    }[viewParams["g"]];
+
     postMeta = viewParams["f"];
     if (postMeta == "1") {
         showPostDate = true;
@@ -295,6 +303,7 @@ function initialize() {
     } else if (postMeta == "7") {
         showReadMore = true;
     }
+
     imgDim = viewParams["k"];
     if (imgDim == "0") imgDim = "50px";
     else if (imgDim == "0") imgDim = "50";
@@ -308,6 +317,7 @@ function initialize() {
     else if (imgDim == "8") imgDim = "90";
     else if (imgDim == "9") imgDim = "95";
     else if (imgDim == "10") imgDim = "100";
+
     readMore = viewParams["o"];
     if (readMore == null || readMore == "") readMore = "More";
     snippetStyle = viewParams["c"];
@@ -333,13 +343,14 @@ function initialize() {
 
     if (viewParams["i"] == "0" || viewParams["i"] == "1") imgFloat = "left";
     else imgFloat = "right";
+
     if (viewParams["i"] == "0" || viewParams["i"] == "2") underline = false;
     if (borderColor != "") showBorder = true;
-
 
     extBlog = viewParams["p"];
 
     extURL = viewParams["q"];
+
     //Set the Background
     document.body.style.backgroundColor = gadgets.skins.getProperty('CONTENT_BG_COLOR');
     if (viewParams["blogurl"]) {
@@ -349,13 +360,16 @@ function initialize() {
     }
 
     document.getElementById('dummy').style.color = viewParams["n"];
+
     if (document.getElementById('dummy').style.color == "") linkColor = gadgets.skins.getProperty('CONTENT_LINK_COLOR');
     else linkColor = viewParams["n"];
     if (viewParams["m"] != "") document.body.style.color = viewParams["m"];
     if (document.body.style.color == "") document.body.style.color = gadgets.skins.getProperty('CONTENT_TEXT_COLOR');
     if (fontFace == "") font = gadgets.skins.getProperty('FONT_FACE');
+
     document.getElementById('dummy').style.color = "";
     document.getElementById('dummy').style.color = borderColor;
+
     if (document.getElementById('dummy').style.color == "") showBorder = false;
     //Pass the preferences and settings to the randomizer
     //feedUrl= viewFeeds.getPostsFeedUrl();
@@ -370,13 +384,12 @@ function initialize() {
         document.getElementById('instr').innerHTML = "Please Turn on the Blog Feeds for the Gadget to Work" + document.getElementById('instr').innerHTML;
         return false;
     }
+    
     if (mediaThumbsOnly || !showThumbs) feedUrl = feedUrl.replace("posts/default", "posts/summary");
     onePostFeed = feedUrl + "?&max-results=" + numberOfPosts;
 
 
-
-    var head = document.getElementsByTagName("head")[0] ||
-        document.documentElement;
+    var head = document.getElementsByTagName("head")[0] || document.documentElement;
 
     var script = document.createElement("script");
     script.src = onePostFeed + "&alt=json-in-script&callback=getPosts";
@@ -386,7 +399,6 @@ function initialize() {
 
     var style = document.createElement("style");
     style.innerHTML = viewParams["css"];
-    //style.charSet = "utf-8";
     head.appendChild(style);
 
 }
@@ -400,5 +412,5 @@ var viewFeeds = new google.Blog(initialize, window.name);
 </html>
 
 ]]>
-    </Content>
+</Content>
 </Module>
