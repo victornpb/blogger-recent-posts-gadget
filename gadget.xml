@@ -231,7 +231,7 @@ var feedUrl = "",
     underline = true;
 </script>
 
-<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/function.js"></script>
+<script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recentPosts.js"></script>
 
 </head>
 <body>
@@ -258,6 +258,7 @@ if (isInConfigPage()) {
 function initialize() {
     //Grab the User Preferences
     var viewParams = gadgets.views.getParams();
+
     numberOfPosts = parseInt(viewParams["a"]);
 
     if (isNaN(numberOfPosts)) numberOfPosts = 1;
@@ -270,7 +271,6 @@ function initialize() {
 
     poweredBy = (viewParams["l"] == "0" ? true : false);
 
-    
     fontFace = {
         "0":"",
         "1":"Arial",
@@ -407,12 +407,6 @@ function initialize() {
     script.src = onePostFeed + "&alt=json-in-script&callback=getPosts";
     script.charSet = "utf-8";
     head.appendChild(script);
-
-
-    var style = document.createElement("style");
-    style.innerHTML = viewParams["css"];
-    head.appendChild(style);
-
 }
 
 var viewFeeds = new google.Blog(initialize, window.name);
