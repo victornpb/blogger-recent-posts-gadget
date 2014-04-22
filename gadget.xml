@@ -298,13 +298,10 @@ var feedUrl = "",
 </head>
 <body>
 
-<h1>Test</h1>
-
 <span id="dummy" style="display:none;"></span>
 <div id="instr" style="display:none;border-bottom:1px solid black;">Hello Admin,If you need help configuring this gadget or if you like to provide your feedback about the gadget or just want to say hi, visit <a href="http://www.bloggerplugins.org/2009/07/recent-posts-widget-blogger-thumnail.html?utm_source=blogger&utm_medium=recent-posts-panel&utm_campaign=gadgets" target="_blank">my blog</a></div>
 
 <div id="recent"></div>
-<small><div id="poweredBy" style="display:none;"></div></small>
 
 <script type="text/javascript">
 //<!--
@@ -454,19 +451,23 @@ function initialize() {
 
 
     var head = document.getElementsByTagName("head")[0] || document.documentElement;
-
+    
     //append custom css Styles to gadget
-    var customStyle = document.createElement("style");
-    customStyle.type = "text/css";
-    customStyle.innerHTML = viewParams["css"];
-    head.appendChild(customStyle);
-
+    if(viewParams["css"]){
+        var customStyle = document.createElement("style");
+        customStyle.type = "text/css";
+        customStyle.innerHTML = viewParams["css"];
+        head.appendChild(customStyle);
+    }
+    
     //add custom script to gadget
-    var customScript = document.createElement("script");
-    customScript.type = "text/javascript";
-    customScript.innerHTML = viewParams["js"];
-    head.appendChild(customScript);
-
+    if(viewParams["js"]){
+        var customScript = document.createElement("script");
+        customScript.type = "text/javascript";
+        customScript.innerHTML = viewParams["js"];
+        head.appendChild(customScript);
+    }
+    
     var script = document.createElement("script");
     script.src = onePostFeed + "&alt=json-in-script&callback=getPosts";
     script.charSet = "utf-8";

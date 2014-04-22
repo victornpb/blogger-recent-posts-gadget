@@ -249,6 +249,7 @@ function getPosts(json) {
     );
 
     document.getElementById('recent').appendChild(gadgetDiv);
+    document.getElementById('recent').appendChild(ul);
 }
 
 /*
