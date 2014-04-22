@@ -173,6 +173,7 @@ name="m"
 display_name="Text Color"
 required="true"
 default_value="" />
+
  <UserPref
 name="n"
 display_name="Link Color"
@@ -187,7 +188,11 @@ default_value="" />
         <EnumValue value="1" display_value="No :("/>
 </UserPref>
 
-
+<UserPref
+name="css"
+display_name="CSS Styles"
+required="false"
+default_value="" />
 
 <Content type="html">
 
