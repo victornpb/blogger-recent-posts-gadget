@@ -47,7 +47,8 @@ function getPosts(json) {
                 postTitle,
                 postContent,
                 thumbUrl,
-                postUrl
+                postUrl,
+                _userParams["linkTarget"]
             )
         );
 
@@ -285,16 +286,16 @@ function createLink(href, target, title) {
 
 */
 
-function createPostItem(title, summary, thumb, link) {
+function createPostItem(title, summary, thumb, link, linkTarget) {
     var li = tag("li", {className: "recentpost"}, [
             tag("div", {className: "thumb"},
-                tag("a", {href: link, taget:"_parent"},
+                tag("a", {href: link, taget: linkTarget},
                     tag("img", {src: thumb})
                 )
             ),
             tag("div",{className: "description"},
                 tag("h1", {},
-                    tag("a", {href: link, taget:"_parent"}, title)
+                    tag("a", {href: link, taget: linkTarget}, title)
                 ),
                 document.createTextNode(summary)
             )
