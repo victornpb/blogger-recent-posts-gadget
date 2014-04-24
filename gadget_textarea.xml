@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+ 
+    <ModulePrefs title="Thomson Reuters Gadget"
+        directory_title="__MSG_gadget.title__" description="__MSG_gadget.description__"
+        author="Rishi Ranka" author_email="rishi.ranka@thomsonreuters.com">
+ 
+        <Optional feature="gadget-directory">
+            <Param name="categories">
+                JIRA
+            </Param>
+        </Optional>
+        <Optional feature="auth-refresh" />
+     
+         
+        <Require feature="setprefs" />
+        <Require feature="dynamic-height" />
+        <Require feature="views" />
+        <Require feature="settitle" />
+        <Require feature="oauthpopup" />
+ 
+        <Locale lang="en" country="us" />
+        <Locale
+            messages="__ATLASSIAN_BASE_URL__/download/resources/jira-gadget-tutorial-plugin/i18n/ALL_ALL.xml"
+        />
+    </ModulePrefs>
+ 
+    <UserPref name="displayName" datatype="hidden" default_value="true"/>
+    <UserPref name="isConfigured" datatype="hidden" default_value="false" />
+    <UserPref name="HeightGadget" display_name="Enter Height:"
+        datatype="" default_value="100" />
+    <UserPref name="refresh" datatype="hidden" default_value="false"/>
+         
+ 
+    <Content type="html" view="profile">
+        <script type="text/javascript">
+ 
+        </script>
+     
+    <![CDATA[
+    <div id="content_div"></div>
+    #requireResource("com.atlassian.jira.gadgets:common")
+    #includeResources() 
+     
+     
+     
+    <script type="text/javascript">
+     
+    (function () {
+    var gadget = AJS.Gadget(
+     
+     
+    {
+     
+    baseUrl: "__ATLASSIAN_BASE_URL__",
+     
+    config: {
+     
+    descriptor: function (args) {
+     
+    var gadget = this;
+     
+ 
+     
+    return {
+     
+    fields: [
+    {
+        id: "textToDisplay",
+        userpref: "displayName",
+        class: "textBox",
+        label: gadget.getMsg("property.label"),
+        description: gadget.getMsg("gadget.description"),
+        type: "textarea",
+        value: gadget.getPref("displayName")
+    },
+    AJS.gadget.fields.nowConfigured()
+            ]
+    };
+     
+    }
+        },  
+     
+     
+     
+     
+    view: {
+ 
+    template: function(args) {
+     
+    var gadget = this;
+     
+    //var userDetails = AJS.$("<h7/>").text(args.user["fullName"]);
+     //
+    //gadget.getView().html(userDetails);
+     
+  // document.getElementById("demo").innerHTML= document.write(gadget.getPref("displayName"));
+     
+     
+     }
+      
+     }
+     });
+     })();
+     
+    </script>
+     
+ 
+     
+ 
+<p id="demo"></p>
+ 
+</body>
+</html>   
+     
+     
+     
+    ]]>
+ 
+ 
+ 
+ 
+    </Content>
+ 
+ 
+ 
+</Module>
