@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs
-    title="Recent Posts"
-    author="Bloggerplugins.org"
-    description="Show your Blog's Recent Posts with Thumbnails Summaries and Post Meta(Date,Comment Count etc.) .You can style the Gadget using your creativity to make it work the way you want"
-    author_email="aneesh@bloggerplugins.org"
-    thumbnail="http://2.bp.blogspot.com/_u4gySN2ZgqE/SmWGJCWOFGI/AAAAAAAAAhU/4_2x42K85y8/s800/recent-posts-with-thumbs.png"
-    screenshot="http://3.bp.blogspot.com/_u4gySN2ZgqE/SmWX-L7r-zI/AAAAAAAAAhk/lh4aZe-l-og/s800/recentpostsscreenshot.png"
-    author_location="India"
-    height=""
->
 
-    <Require feature="opensocial-0.7"/>
-    <Require feature="google.blog"/>
-    <Require feature="dynamic-height"/>
-    <Require feature="settitle"/>
-    <Require feature="setprefs"/>
-    <Require feature="skins"/>
-    <Require feature="views"/>
+  title="Recent Posts"
+  author="Bloggerplugins.org"
+  description="Show your Blog's Recent Posts with Thumbnails Summaries and Post Meta(Date,Comment Count etc.) .You can style the Gadget using your creativity to make it work the way you want"
+  author_email="aneesh@bloggerplugins.org"
+  thumbnail="http://2.bp.blogspot.com/_u4gySN2ZgqE/SmWGJCWOFGI/AAAAAAAAAhU/4_2x42K85y8/s800/recent-posts-with-thumbs.png"
+  screenshot="http://3.bp.blogspot.com/_u4gySN2ZgqE/SmWX-L7r-zI/AAAAAAAAAhk/lh4aZe-l-og/s800/recentpostsscreenshot.png"
+  author_location="India"
+  height="600">
+
+  <Require feature="dynamic-height"/>
+  <Require feature="opensocial-0.7"/>
+  <Require feature="google.blog"/>
+  <Require feature="skins"/>
+  <Require feature="views"/>
 
 </ModulePrefs>
 
-<!--
 <UserPref name="HeightGadget" display_name="Enter Height:" datatype="" default_value="100" />
--->
 
 <UserPref name="p"
 display_name="Pull Posts from"
@@ -33,23 +29,27 @@ default_value="0">
     <EnumValue value="1" display_value="The Blogger Blog Below"/>
 </UserPref>
 
+
 <UserPref
-name="externalBlogUrl"
+name="q"
 display_name="External Blogger URL(Needed only if you opt to display posts form another blog)"
 required="true"
 default_value="" />
 
+
 <UserPref
-name="numberPosts"
+name="a"
 display_name="Number of Posts to Display"
 required="true"
 default_value="5" />
 
+
 <UserPref
-name="maxTitleLenth"
+name="b"
 display_name="Maximum Length of the Post Title"
 required="true"
 default_value="60" />
+
 
 <UserPref
 name="c"
@@ -61,6 +61,7 @@ default_value="0">
     <EnumValue value="2" display_value="Summary and Thumbnail"/>
     <EnumValue value="3" display_value="Thumbnail Only"/>
 </UserPref>
+
 
 <UserPref
 name="d"
@@ -74,8 +75,9 @@ default_value="0">
     <EnumValue value="3" display_value="Any Thumb &amp; No Image Thumb"/>
 </UserPref>
 
+
 <UserPref 
-name="thumbSize"
+name="k"
 display_name="Thumbnail Dimensions"
 datatype="enum"
 default_value="0">
@@ -92,15 +94,17 @@ default_value="0">
     <EnumValue value="10" display_value="100 x 100"/>
 </UserPref>
 
+ 
 <UserPref
 name="e"
 display_name="Summary Length"
 required="true"
 default_value="150" />
 
+
 <UserPref
-name="postMetaFormat"
-display_name="Post Meta Format"
+name="f"
+display_name="Post Meta Style"
 datatype="enum"
 default_value="0">
     <EnumValue value="0" display_value="None"/>
@@ -113,11 +117,13 @@ default_value="0">
     <EnumValue value="7" display_value=" More >>"/>
 </UserPref>
 
+
 <UserPref
-name="readMoreText"
+name="o"
 display_name="Read More Text"
 required="true"
 default_value="" />
+
 
 <UserPref
 name="g"
@@ -133,6 +139,7 @@ default_value="0">
     <EnumValue value="6" display_value="Trebuchet"/>
     <EnumValue value="7" display_value="Verdana"/>
 </UserPref>
+
 
 <UserPref
 name="h"
@@ -177,7 +184,7 @@ required="true"
 default_value="" />
 
 <UserPref
-name="linkColor"
+name="n"
 display_name="Link Color"
 required="true"
 default_value="" />
@@ -192,7 +199,7 @@ default_value="0">
 </UserPref>
 
 <UserPref
-name="showPoweredby"
+name="l"
 display_name="Show Powered by Link"
 datatype="enum"
 default_value="0">
@@ -201,13 +208,13 @@ default_value="0">
 </UserPref>
 
 <UserPref
-name="customCSS"
+name="css"
 display_name="Custom CSS Styles"
 required="false"
 default_value="" />
 
 <UserPref
-name="customScript"
+name="js"
 display_name="Custom Javascript"
 required="false"
 default_value="" />
@@ -327,16 +334,9 @@ if (isInConfigPage()) {
 }
 
 
-
 globalTest = 1;
 
 function initialize() {
-    
-    console.log("gadget initialize()");
-
-    console.log("gadgets", gadgets);
-
-    //gadgets.util.registerOnLoadHandler(gadgets.window.adjustHeight);
 
     globalTest = 2;
     
@@ -345,17 +345,17 @@ function initialize() {
 
     _userParams = viewParams;
 
-    numberOfPosts = parseInt(viewParams["numberPosts"]);
+    numberOfPosts = parseInt(viewParams["a"]);
 
     if (isNaN(numberOfPosts)) numberOfPosts = 1;
 
     summaryLength = parseInt(viewParams["e"]);
-    titleLength = parseInt(viewParams["maxTitleLenth"]);
+    titleLength = parseInt(viewParams["b"]);
 
     if (viewParams["h"] == "0") fontSize = "";
     else fontSize = viewParams["h"] + 'px';
 
-    poweredBy = (viewParams["showPoweredby"] == "0" ? true : false);
+    poweredBy = (viewParams["l"] == "0" ? true : false);
 
     fontFace = {
         "0":"",
@@ -368,7 +368,7 @@ function initialize() {
         "7":"Verdana",
     }[viewParams["g"]];
 
-    postMeta = viewParams["postMetaFormat"];
+    postMeta = viewParams["f"];
     if (postMeta == "1") {
         showPostDate = true;
         showCommentCount = true;
@@ -390,7 +390,7 @@ function initialize() {
         showReadMore = true;
     }
 
-    imgDim = viewParams["thumbSize"];
+    imgDim = viewParams["k"];
     if (imgDim == "0") imgDim = "50px";
     else if (imgDim == "0") imgDim = "50";
     else if (imgDim == "1") imgDim = "55";
@@ -404,7 +404,7 @@ function initialize() {
     else if (imgDim == "9") imgDim = "95";
     else if (imgDim == "10") imgDim = "100";
 
-    readMore = viewParams["readMoreText"];
+    readMore = viewParams["o"];
     if (readMore == null || readMore == "") readMore = "More";
     snippetStyle = viewParams["c"];
     if (snippetStyle == "1") {
@@ -435,7 +435,7 @@ function initialize() {
 
     extBlog = viewParams["p"];
 
-    extURL = viewParams["externalBlogUrl"];
+    extURL = viewParams["q"];
 
     //Set the Background
     document.body.style.backgroundColor = gadgets.skins.getProperty('CONTENT_BG_COLOR');
@@ -445,10 +445,10 @@ function initialize() {
         exit();
     }
 
-    document.getElementById('dummy').style.color = viewParams["linkColor"];
+    document.getElementById('dummy').style.color = viewParams["n"];
 
     if (document.getElementById('dummy').style.color == "") linkColor = gadgets.skins.getProperty('CONTENT_LINK_COLOR');
-    else linkColor = viewParams["linkColor"];
+    else linkColor = viewParams["n"];
     if (viewParams["m"] != "") document.body.style.color = viewParams["m"];
     if (document.body.style.color == "") document.body.style.color = gadgets.skins.getProperty('CONTENT_TEXT_COLOR');
     if (fontFace == "") font = gadgets.skins.getProperty('FONT_FACE');
@@ -481,7 +481,7 @@ function initialize() {
     if(viewParams["css"]){
         var customStyle = document.createElement("style");
         customStyle.type = "text/css";
-        customStyle.innerHTML = viewParams["customCSS"];
+        customStyle.innerHTML = viewParams["css"];
         head.appendChild(customStyle);
     }
 
@@ -489,7 +489,7 @@ function initialize() {
     if(viewParams["js"]){
         var customScript = document.createElement("script");
         customScript.type = "text/javascript";
-        customScript.innerHTML = viewParams["customScript"];
+        customScript.innerHTML = viewParams["js"];
         head.appendChild(customScript);
     }
 
