@@ -251,7 +251,7 @@ function getPosts(json) {
 
     gadgets.window.adjustHeight();
 
-    console.log(gadgets);
+    console.log(gadgets); //debug
 }
 
 /*
