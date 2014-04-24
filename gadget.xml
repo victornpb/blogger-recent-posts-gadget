@@ -338,6 +338,8 @@ globalTest = 1;
 
 function initialize() {
 
+    console.log("initialize gadget", gadgets);
+
     globalTest = 2;
     
     //Grab the User Preferences

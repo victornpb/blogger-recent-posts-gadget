@@ -1,7 +1,8 @@
 function getPosts(json) {
 
-    console.log(_userParams, globalTest);
-    console.log(json);
+    console.log("getPosts(json)", json);
+    console.log("_userParams", _userParams);
+    console.loh("gadgets", gadgets);
 
     var ul = tag("ul");
 
