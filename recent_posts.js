@@ -2,7 +2,7 @@ function getPosts(json) {
 
     console.log("getPosts(json)", json);
     console.log("_userParams", _userParams);
-    console.loh("gadgets", gadgets);
+    //console.loh("gadgets", gadgets);
 
     var ul = tag("ul");
 
