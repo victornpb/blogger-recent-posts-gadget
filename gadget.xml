@@ -338,7 +338,7 @@ globalTest = 1;
 
 function initialize() {
 
-    console.log("ver 24/apr/14 12:53 am");
+    console.log("ver 24/apr/14 1:00 am");
 
     gadgets.util.registerOnLoadHandler(gadgets.window.adjustHeight);
 
