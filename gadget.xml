@@ -189,6 +189,15 @@ required="true"
 default_value="" />
 
 <UserPref
+name="linkTarget"
+display_name="Open Link in"
+datatype="enum"
+default_value="0">
+    <EnumValue value="_parent" display_value="Same tab"/>
+    <EnumValue value="_blank" display_value="New tab"/>
+</UserPref>
+
+<UserPref
 name="l"
 display_name="Show Powered by Link"
 datatype="enum"
@@ -318,9 +327,14 @@ if (isInConfigPage()) {
 }
 
 
+var _userParams;
+
 function initialize() {
+    
     //Grab the User Preferences
     var viewParams = gadgets.views.getParams();
+
+    _userParams = viewParams;
 
     numberOfPosts = parseInt(viewParams["a"]);
 
