@@ -1,9 +1,7 @@
-var postTitleOriginal, myLink, myDiv, myImage;
-var main;
-
 function getPosts(json) {
 
-    //console.log(json);
+    console.log(_userParams);
+    console.log(json);
 
     var ul = tag("ul");
 
@@ -48,7 +46,7 @@ function getPosts(json) {
                 postContent,
                 thumbUrl,
                 postUrl,
-                _userParams["linkTarget"]
+                _userParams["linkTarget"]?_userParams["linkTarget"]:"_parent"
             )
         );
 

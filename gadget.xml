@@ -302,6 +302,9 @@ var feedUrl = "",
     imgDim, imgFloat, showBorder = false,
     borderColor, fontFace, imgCSS, poweredBy = true,
     underline = true;
+
+var _userParams;
+var globalTest = 0;
 </script>
 
 <script type="text/javascript" src="http://victornpb.github.io/blogger-recent-posts-gadget/recent_posts.js"></script>
@@ -327,9 +330,11 @@ if (isInConfigPage()) {
 }
 
 
-var _userParams;
+globalTest = 1;
 
 function initialize() {
+
+    globalTest = 2;
     
     //Grab the User Preferences
     var viewParams = gadgets.views.getParams();
