@@ -12,7 +12,7 @@
   height="">
 
   <Require feature="dynamic-height"/>
-  <Require feature="opensocial-0.7"/>
+  <!--<Require feature="opensocial-0.7"/>-->
   <Require feature="google.blog"/>
   <Require feature="skins"/>
   <Require feature="views"/>
