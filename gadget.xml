@@ -19,6 +19,7 @@
 
 </ModulePrefs>
 
+<UserPref name="HeightGadget" display_name="Enter Height:" datatype="" default_value="100" />
 
 <UserPref name="p"
 display_name="Pull Posts from"
