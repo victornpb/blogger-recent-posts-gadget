@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs
+    title="Recent Posts"
+    author="Bloggerplugins.org"
+    description="Show your Blog's Recent Posts with Thumbnails Summaries and Post Meta(Date,Comment Count etc.) .You can style the Gadget using your creativity to make it work the way you want"
+    author_email="aneesh@bloggerplugins.org"
+    thumbnail="http://2.bp.blogspot.com/_u4gySN2ZgqE/SmWGJCWOFGI/AAAAAAAAAhU/4_2x42K85y8/s800/recent-posts-with-thumbs.png"
+    screenshot="http://3.bp.blogspot.com/_u4gySN2ZgqE/SmWX-L7r-zI/AAAAAAAAAhk/lh4aZe-l-og/s800/recentpostsscreenshot.png"
+    author_location="India"
+    height=""
+>
 
-  title="Recent Posts"
-  author="Bloggerplugins.org"
-  description="Show your Blog's Recent Posts with Thumbnails Summaries and Post Meta(Date,Comment Count etc.) .You can style the Gadget using your creativity to make it work the way you want"
-  author_email="aneesh@bloggerplugins.org"
-  thumbnail="http://2.bp.blogspot.com/_u4gySN2ZgqE/SmWGJCWOFGI/AAAAAAAAAhU/4_2x42K85y8/s800/recent-posts-with-thumbs.png"
-  screenshot="http://3.bp.blogspot.com/_u4gySN2ZgqE/SmWX-L7r-zI/AAAAAAAAAhk/lh4aZe-l-og/s800/recentpostsscreenshot.png"
-  author_location="India"
-  height="">
-
-  <Require feature="dynamic-height"/>
-  <!--<Require feature="opensocial-0.7"/>-->
-  <Require feature="google.blog"/>
-
-  <Require feature="settitle"/>
-  <Require feature="setprefs"/>
-  <Require feature="skins"/>
-  <Require feature="views"/>
+    <Require feature="opensocial-0.7"/>
+    <Require feature="google.blog"/>
+    <Require feature="dynamic-height"/>
+    <Require feature="settitle"/>
+    <Require feature="setprefs"/>
+    <Require feature="skins"/>
+    <Require feature="views"/>
 
 </ModulePrefs>
 
