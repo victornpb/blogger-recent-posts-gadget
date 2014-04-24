@@ -333,7 +333,11 @@ globalTest = 1;
 
 function initialize() {
     
-    gadgets.util.registerOnLoadHandler(gadgets.window.adjustHeight);
+    console.log("gadget initialize()");
+
+    console.log("gadgets", gadgets);
+
+    //gadgets.util.registerOnLoadHandler(gadgets.window.adjustHeight);
 
     globalTest = 2;
     

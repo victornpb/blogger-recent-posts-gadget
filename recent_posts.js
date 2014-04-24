@@ -1,12 +1,8 @@
 function getPosts(json) {
 
-    
-
     console.log("_userParams", _userParams);
 
-    console.log("_userParams", _userParams);
-
-    console.log(json);
+    console.log("getPosts(json)", json);
 
     var ul = tag("ul");
 
@@ -249,9 +245,9 @@ function getPosts(json) {
 
     document.getElementById('recent').appendChild(ul);
 
-    gadgets.window.adjustHeight();
+    //gadgets.window.adjustHeight();
 
-    console.log(gadgets); //debug
+    //console.log(gadgets); //debug
 }
 
 /*
