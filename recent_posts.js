@@ -292,13 +292,13 @@ function createLink(href, target, title) {
 function createPostItem(title, summary, thumb, link, linkTarget) {
     var li = tag("li", {className: "recentpost"}, [
             tag("div", {className: "thumb"},
-                tag("a", {href: link, taget: linkTarget},
+                tag("a", {href: link, target: linkTarget},
                     tag("img", {src: thumb})
                 )
             ),
             tag("div",{className: "description"},
                 tag("h1", {},
-                    tag("a", {href: link, taget: linkTarget}, title)
+                    tag("a", {href: link, target: linkTarget}, title)
                 ),
                 document.createTextNode(summary)
             )

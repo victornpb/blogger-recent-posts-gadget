@@ -189,6 +189,7 @@ display_name="Link Color"
 required="true"
 default_value="" />
 
+<!--
 <UserPref
 name="linkTarget"
 display_name="Open Link in"
@@ -196,6 +197,14 @@ datatype="enum"
 default_value="0">
     <EnumValue value="_parent" display_value="Same tab"/>
     <EnumValue value="_blank" display_value="New tab"/>
+</UserPref>
+-->
+
+<UserPref
+name="linkTarget"
+display_name="Open Link in"
+datatype="string"
+default_value="_top">
 </UserPref>
 
 <UserPref
@@ -338,7 +347,7 @@ globalTest = 1;
 
 function initialize() {
 
-    console.log("ver 24/apr/14 1:00 am");
+    console.log("ver 24/apr/14 1:09 am");
 
     gadgets.util.registerOnLoadHandler(gadgets.window.adjustHeight);
 
