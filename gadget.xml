@@ -339,6 +339,7 @@ globalTest = 1;
 function initialize() {
 
     console.log("initialize gadget", gadgets);
+    console.log("ver 24/apr/14 12:53 am");
 
     globalTest = 2;
     

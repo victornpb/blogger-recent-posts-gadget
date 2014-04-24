@@ -243,6 +243,8 @@ function getPosts(json) {
         */
     } //close post loop
 
+    ul.onload = function(){ console.log("posts loaded!"); };
+
     document.getElementById('recent').appendChild(ul);
 }
 
