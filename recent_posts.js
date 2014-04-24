@@ -246,6 +246,8 @@ function getPosts(json) {
     ul.onload = function(){ console.log("posts loaded!"); };
 
     document.getElementById('recent').appendChild(ul);
+
+    gadgets.window.adjustHeight();
 }
 
 /*
